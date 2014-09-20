@@ -1,0 +1,34 @@
+{
+  "name": "services",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/grunt ci"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com//services"
+  },
+  "keywords": [],
+  "author": "dhruv_chandna@intuit.com",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com//services/issues"
+  },
+  "dependencies": {
+    "express": "^3.5.0",
+    "mongojs": "^0.10.1",
+    "q": "^1.0.1"
+  },
+  "devDependencies": {
+    "expect.js": "~0.2.0",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt": "~0.4.1",
+    "grunt-mocha-cli": "~1.1.0",
+    "grunt-complexity": "~0.1.3",
+    "grunt-cli": "~0.1.9",
+    "nodemon": "^1.0.17"
+  }
+}
