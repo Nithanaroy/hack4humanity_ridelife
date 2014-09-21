@@ -6,6 +6,15 @@ var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
+// require('./config/socket.io')(io);
+
+
+io.sockets.on('connection', require('./routes/socket'));
+// io.on('connection', function(socket) {
+
+	
+// });
+
 app.set('port', process.env.PORT || 3000);
 
 var allowCrossDomain = function(req, res, next) {
@@ -42,6 +51,7 @@ app.post('/users/login', user.login);
 
 app.get('/users', user.getAll);
 app.get('/users/helpme', user.helpNeeded);
+app.get('/users/givingride', user.givingRide);
 app.get('/users/:id', user.findUserById);
 
 

@@ -1,4 +1,5 @@
 var User = require('../models/user.js');
+var globals = require('../config/globals');
 
 /**
  * Pulls all the users from DB
@@ -46,6 +47,9 @@ exports.helpNeeded = function(req, res) {
 	var requested_user_id = req.query.user_id;
 
 	// Broadcast this message to all other clients
+	socket = globals.socket;
+	// console.log('testing in users', socket);
+	socket.broadcast.emit('hi', "Hello There");
 
 	res.send(200);
 }
