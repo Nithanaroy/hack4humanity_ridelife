@@ -1,8 +1,9 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="bootstrap-3.2.0-dist\bootstrap-3.2.0-dist\css\bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
     <script src="jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src='bootstrap.min.js'></script>
     <script src="https://cdn.socket.io/socket.io-1.1.0.js"></script>
     <script>
     $(function() {
@@ -40,15 +41,62 @@
 </head>
 
 <body>
-    <center>
-        <a href="#" id='req_ride_btn'>
-            <img class="align-center img-responsive" src="Logo1.png" height="200" width="200" />
-        </a>
+    <div class='container'>
 
-        <a href='list_of_drunkers.html'>
-            <button type="button" class="btn btn-default btn-lg">Give a Ride!</button>
-        </a>
-    </center>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Spirit Of Humanity</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a>
+                        </li>
+                        <li><a href="#">History</a>
+                        </li>
+                        <li><a href="#">Account</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+        <div>
+            <a href="#" id='req_ride_btn'>
+                <img class="center-block img-responsive" src="Logo1.png" height="200" style='box-shadow: 0 0px 10px #AAA;' />
+            </a>
+
+            <br />
+
+            <div class='text-center'>
+                <a href='list_of_drunkers.html'>
+                    <button type="button" class="btn btn-success btn-lg">Give a Ride!</button>
+                </a>
+                <span class="badge" style="
+							    position: relative;
+								top: -20px;
+								left: -18px;
+							    background: red;
+							    color: #FFF;
+							    box-shadow: 0 0 4px #AAA;
+							    border: solid 1px #999;
+							    border-radius: 14px;
+							    padding: 7px;
+							">42</span>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

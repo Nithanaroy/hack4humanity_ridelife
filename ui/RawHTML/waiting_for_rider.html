@@ -4,6 +4,7 @@
     <link href="bootstrap-3.2.0-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 
     <script src="jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src='bootstrap.min.js'></script>
     <script src="https://cdn.socket.io/socket.io-1.1.0.js"></script>
 
     <script type="text/javascript">
@@ -39,7 +40,7 @@
                     },
                     crossDomain: true,
                     success: function(data) {
-                    	window.location.href = 'thankyou_drunker.html';
+                        window.location.href = 'thankyou_drunker.html';
                     },
                     error: function(data) {
                         console.log(data);
@@ -62,31 +63,66 @@
 
 <body>
     <div class='container'>
+
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Spirit Of Humanity</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a>
+                        </li>
+                        <li><a href="#">History</a>
+                        </li>
+                        <li><a href="#">Account</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
         <div id='stage1'>
             <!-- The waiting screen when page loads -->
 
-            <h1 align="center">Request Processing...</h1>
+            <div class="page-header">
+                <h1 class="text-center">Request Processing...</h1>
+            </div>
 
-            <img class="media-object" src="requestprocess.jpg" height='200' width='200' />
+            <img class="media-object center-block img-responsive" src="requestprocess.jpg" width='200' />
+
+            <br />
 
             <a href="give_take_ride.html">
-                <button class="btn btn-default btn-lg" onClick="goBack()">Back</button>
+                <button class="center-block btn btn-warning btn-lg" onClick="goBack()">Back</button>
             </a>
         </div>
 
         <div id='stage2' class='hidden'>
             <!-- Showing the detials of the driver assigned -->
 
-            <h1 align="center">Your ride on its way...</h1>
-
-            <p>
-                <strong id='driver_name'></strong> has agreed to give you a ride whose license no. is
+            <div class="page-header">
+                <h1 class="text-center">Your ride on its way...</h1>
+            </div>
+            <p class='text-center'>
+                <strong id='driver_name'></strong>has agreed to give you a ride whose license no. is
                 <strong id='driver_license'></strong>and will be with you in approximately 10 minutes. You can reach him / her at
                 <strong id='driver_phone'></strong>
             </p>
 
             <!-- Clicking this button exchange the tokens -->
-            <button id='finish_ride' class='btn btn-success'>Finish Ride</button>
+            <button id='finish_ride' class='center-block btn btn-success'>Finish Ride</button>
         </div>
     </div>
 </body>
