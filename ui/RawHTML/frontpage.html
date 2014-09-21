@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="bootstrap-3.2.0-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript">
+
+function setCookie() {
+    var d = new Date();
+	var u = document.getElementById("ASUID");
+    d.setTime(d.getTime() + (365*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = "ASU_ID="+u.value+"; "+expires;
+	alert(u.value);
+	window.location="home.html";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) {
+            return c;
+        }
+    }
+    return "";
+}
+
+	function checkCookie() {
+		var user=getCookie("ASU_ID");
+		if (user != "") {
+			alert("Welcome " + user.value);
+			window.location="home.html";
+		} 
+    }
+
+</script>
+</head>
+<body onload="checkCookie()">
+    <div class="container">
+
+      <form class="form-signin" role="form">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="email" class="form-control" id="ASUID" placeholder="Enter ASU ID" required autofocus>
+        <input type="password" class="form-control" placeholder="Password" required>
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="setCookie()">Sign in</button>
+      </form>
+
+    </div>
+</body>
+</html>
