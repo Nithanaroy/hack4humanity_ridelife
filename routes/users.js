@@ -47,11 +47,37 @@ exports.helpNeeded = function(req, res) {
 	var requested_user_id = req.query.user_id;
 
 	// Broadcast this message to all other clients
-	socket = globals.socket;
+	var io = globals.io;
 	// console.log('testing in users', socket);
-	socket.broadcast.emit('hi', "Hello There");
+	io.emit('hi', "A guy requested for help. Update the balloon");
 
 	res.send(200);
+}
+
+/**
+ * This method is invoked when a user accepts to give a ride
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
+exports.givingRide = function(req, res) {
+	var user_id = req.query.user_id;
+
+	User.find({
+		asu_id: user_id
+	}, function(err, user) {
+		if (err) {
+			res.send(500, data);
+		} else {
+			
+			var io = globals.io;
+			// console.log(socket, user);
+			// console.log(user[0].phone_no + "|" + user[0].license);
+			io.emit('assigned_driver', JSON.stringify(user[0]));
+			
+			res.send(200);
+		};
+	});
 }
 
 /**

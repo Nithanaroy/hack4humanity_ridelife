@@ -5,10 +5,11 @@ var express = require('express'),
 var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
+var globals = require('./config/globals');
 
 // require('./config/socket.io')(io);
 
-
+globals.io = io;
 io.sockets.on('connection', require('./routes/socket'));
 // io.on('connection', function(socket) {
 
