@@ -1,0 +1,28 @@
+<html>
+<script type="text/javascript">
+function openmaps()
+{
+	var link = "http://maps.google.com/maps?saddr=";
+	var destinationlatitude = 33.4319;
+	var destinationlongitude = -111.948896;
+	if (navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition(function (position) { 
+	var currentlatitude = position.coords.latitude;   
+	var currentlongitude = position.coords.longitude;
+
+	link = link.concat(currentlatitude);
+	link = link.concat(",");
+	link = link.concat(currentlongitude);
+	link = link.concat("&daddr=");
+	link = link.concat(destinationlatitude);
+	link = link.concat(",");
+	link = link.concat(destinationlongitude);
+	window.location=link;
+	});
+	}
+}
+</script>
+<body>
+	<a onclick="openmaps()">Take me there!</a>
+</body>
+</html>
