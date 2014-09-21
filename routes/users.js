@@ -23,6 +23,7 @@ exports.getAll = function(req, res) {
  * @return {status json}
  */
 exports.create = function(req, res) {
+	console.log(req.body, req.params, req.query);
 	User.save(req.body.user, function(err, data) {
 		if (err) {
 			res.send(500, data)
@@ -62,12 +63,30 @@ exports.getNearByUsers = function(req, res) {
  */
 exports.findUserById = function(req, res) {
 	User.find({
-		asu_id: req.asu_id
+		asu_id: req.params.id
 	}, function(err, user) {
 		if (err) {
 			res.send(500, data);
 		} else {
 			res.json(user);
 		};
+	});
+}
+
+/**
+ * Takes a ASU ID and password and sends all user details
+ * @param  {object} req request object
+ * @param  {object} res response object
+ * @return {object} user object
+ */
+exports.login = function(req, res) {
+	console.log(req.body, req.params, req.query);
+	asu_id = req.body.id;
+	password = req.body.password; // TODO: Not using for now
+	User.find({asu_id: asu_id}, function(err, user) {
+		if (err) { res.send(500, err); }
+		else {
+			res.json(user[0]); // TODO: Will be undefined response if no users are found
+		}
 	});
 }

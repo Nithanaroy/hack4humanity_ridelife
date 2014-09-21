@@ -35,10 +35,13 @@ app.get('/sessions/:id', session.findById);
 app.put('/sessions/:id/*', session.updateSession);
 app.post('/sessions', session.save);
 
-app.get('/users', user.getAll);
 app.post('/users/save', user.create);
+app.post('/users/login', user.login);
+
+app.get('/users', user.getAll);
 app.get('/users/nearby', user.getNearByUsers);
 app.get('/users/:id', user.findUserById);
+
 
 http.createServer(app).listen(app.get('port'), function() {
 	console.log('Hack4Humanity just started its ride! ' + app.get('port'));
