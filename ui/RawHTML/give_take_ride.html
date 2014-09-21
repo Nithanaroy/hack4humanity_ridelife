@@ -6,24 +6,24 @@
 <script>
 $(function() {
 
-	var socket = io("http://192.168.204.1:3000/");
+	var socket = io("http://10.143.179.16:3000/");
 
 	socket.on('hi', function(message) {
 		console.log(message);
 	});
 
 
-	// Sending Request
+	// Asking for a ride
 	// var mongoUrl = "http://whispering-cove-6076.herokuapp.com/";
-	var mongoUrl = "http://192.168.204.1:3000/";
+	var mongoUrl = "http://10.143.179.16:3000/";
 	$("#req_ride_btn").click(function(event) {
 		$.ajax({
 			type: "GET",
 			url: mongoUrl + "users/helpme",
 			success: function(data) {
-				location.href = "requestcar.html";
+				location.href = "waiting_for_rider.html";
 			},
-			// Pull from cookie
+			// TODO: Pull from cookie
 			data: {
 				user_id: 832546325472,
 				location: "test"
@@ -41,7 +41,7 @@ $(function() {
 <center>
   <a href="#" id='req_ride_btn'><img class="align-center img-responsive" src = "Logo1.png" height ="200" width ="200" /></a>
 
-  <a href='Accept.html'>
+  <a href='list_of_drunkers.html'>
 	<button type="button"  class="btn btn-default btn-lg">Give a Ride!</button>
   </a>
 </center>

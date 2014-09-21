@@ -29,7 +29,7 @@ $(function() {
 		complete: function() {}
 	});
 
-	var mongoUrl = "http://192.168.204.1:3000/";
+	var mongoUrl = "http://10.143.179.16:3000/";
 
 	// After rider clicks accept button
 	$("#acceptBtn").click(function(event) {
@@ -38,7 +38,7 @@ $(function() {
 			type: "GET",
 			url: mongoUrl + "users/givingride",
 			success: function(data) {
-				location.href = "list.html";
+				location.href = "map.html";
 			},
 			data: {
 				user_id: 832546325472

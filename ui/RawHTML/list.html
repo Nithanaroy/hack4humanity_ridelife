@@ -6,19 +6,19 @@ function openmaps()
 	var destinationlatitude = 33.4319;
 	var destinationlongitude = -111.948896;
 	if (navigator.geolocation) {
-	navigator.geolocation.getCurrentPosition(function (position) { 
-	var currentlatitude = position.coords.latitude;   
-	var currentlongitude = position.coords.longitude;
+		navigator.geolocation.getCurrentPosition(function(position) {
+			var currentlatitude = position.coords.latitude;
+			var currentlongitude = position.coords.longitude;
 
-	link = link.concat(currentlatitude);
-	link = link.concat(",");
-	link = link.concat(currentlongitude);
-	link = link.concat("&daddr=");
-	link = link.concat(destinationlatitude);
-	link = link.concat(",");
-	link = link.concat(destinationlongitude);
-	window.location=link;
-	});
+			link = link.concat(currentlatitude);
+			link = link.concat(",");
+			link = link.concat(currentlongitude);
+			link = link.concat("&daddr=");
+			link = link.concat(destinationlatitude);
+			link = link.concat(",");
+			link = link.concat(destinationlongitude);
+			window.location = link;
+		});
 	}
 }
 </script>
