@@ -23,7 +23,7 @@ exports.getAll = function(req, res) {
  * @return {status json}
  */
 exports.create = function(req, res) {
-	User.save(req.user, function(err, data) {
+	User.save(req.body.user, function(err, data) {
 		if (err) {
 			res.send(500, data)
 		} else {
