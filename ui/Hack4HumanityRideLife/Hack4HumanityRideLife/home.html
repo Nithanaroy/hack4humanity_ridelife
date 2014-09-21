@@ -1,0 +1,33 @@
+<html>
+<head>
+
+    <link href="bootstrap-3.2.0-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        function loadUserName() {
+            alert('Hi');
+            var $_GET = URI(document.URL).query(true); // ala PHP
+            alert($_GET['dest']);
+        }
+    </script>
+
+</head>
+<body onload="loadUserName()">
+    <center>
+        <div class="container">
+            <h1 align="center">Spirit of Humanity</h1>
+            <div id="mycarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <a href="requestcar.html"><img class="align-center img-responsive" src="Logo1.png" /></a>
+                        <div class="carousel-caption">
+                            Request Service
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-default btn-lg" onclick="loadXMLDoc()">Accept</button>
+        </div>
+    </center>
+</body>
+</html>
