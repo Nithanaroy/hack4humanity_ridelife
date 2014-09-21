@@ -135,3 +135,20 @@ exports.login = function(req, res) {
 		}
 	});
 }
+
+/**
+ * Exchange the tokens
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
+exports.completeRide = function(req, res) {
+	drunker_id = req.query.drunker_id;
+	rider_id = req.query.rider_id;
+
+	User.Inc({asu_id: drunker_id}, { $inc: { tokens: -2} }, function(err, data) {
+		User.Inc({asu_id: rider_id}, { $inc: { tokens: 1} }, function(err, data) {
+			res.send(200);
+		});
+	})
+}

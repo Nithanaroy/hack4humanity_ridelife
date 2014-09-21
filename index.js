@@ -53,8 +53,8 @@ app.post('/users/login', user.login);
 app.get('/users', user.getAll);
 app.get('/users/helpme', user.helpNeeded);
 app.get('/users/givingride', user.givingRide);
+app.get('/users/completeride', user.completeRide);
 app.get('/users/:id', user.findUserById);
-
 
 
 http.listen(app.get('port'), function() {

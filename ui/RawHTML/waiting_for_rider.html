@@ -9,18 +9,47 @@
     <script type="text/javascript">
     $(function() {
 
-        var socket = io("http://10.143.179.16:3000/");
+        var assigned_driver = null;
+        var mongoUrl = 'http://10.143.179.16:3000/';
+        var socket = io(mongoUrl);
 
         // Driver is assigned, show a screen displayng the driver details
         socket.on('assigned_driver', function(driver) {
-            driver = JSON.parse(driver);
-            console.log(driver);
-            $("#driver_name").text(driver.name);
-            $("#driver_license").text(driver.license);
-            $("#driver_phone").text(driver.phone_no);
+            assigned_driver = JSON.parse(driver);
+            console.log(assigned_driver);
+            $("#driver_name").text(assigned_driver.name);
+            $("#driver_license").text(assigned_driver.license);
+            $("#driver_phone").text(assigned_driver.phone_no);
             $("#stage2").removeClass('hidden');
             $("#stage1").addClass('hidden');
         });
+
+        // Exchange the tokens
+
+        $("#finish_ride").click(function() {
+            if (assigned_driver) {
+
+                // make an ajax call completing the ride
+                $.ajax({
+                    url: mongoUrl + 'users/completeride',
+                    type: "GET",
+                    data: {
+                        drunker_id: 832546325472,
+                        driver_id: assigned_driver.asu_id
+                    },
+                    crossDomain: true,
+                    success: function(data) {
+                    	window.location.href = 'thankyou_drunker.html';
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    },
+                    complete: function() {}
+                });
+
+                assigned_driver = null;
+            };
+        })
 
     });
 
@@ -51,7 +80,7 @@
             <h1 align="center">Your ride on its way...</h1>
 
             <p>
-                <strong id='driver_name'></strong>has agreed to give you a ride whose license no. is
+                <strong id='driver_name'></strong> has agreed to give you a ride whose license no. is
                 <strong id='driver_license'></strong>and will be with you in approximately 10 minutes. You can reach him / her at
                 <strong id='driver_phone'></strong>
             </p>
