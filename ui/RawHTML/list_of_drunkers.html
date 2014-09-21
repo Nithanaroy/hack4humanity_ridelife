@@ -1,8 +1,9 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="bootstrap-3.2.0-dist\bootstrap-3.2.0-dist\css\bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
     <script src="jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src='bootstrap.min.js'></script>
     <script type='text/javascript'>
     $(function() {
 
@@ -11,17 +12,25 @@
             type: "GET",
             url: "http://whispering-cove-6076.herokuapp.com/users",
             crossDomain: true,
-            success: function(data) {
-                var length = data.length;
-                var $content = $(".content");
-                var hash = 2;
-                for (var i = 0; i < length; i++) {
-                    var $newPanel = $content.clone();
-                    $newPanel.find(".collapse").removeClass("in");
-                    $newPanel.find(".requester-toggle").attr("href", "#" + (++hash))
-                        .text("Dynamic panel #" + hash);
-                    $newPanel.find(".panel-collapse").attr("id", hash).addClass("collapse").removeClass("in");
-                    $("#requester").append($newPanel.fadeIn());
+            success: function(users) {
+                var cusers = users.length;
+
+                for (var i = 0; i < cusers; i++) {
+                    var li = $("<li />").addClass('list-group-item acceptBtn');
+                    var table = $("<table />").attr({width: '100%'});
+                    var tr = $("<tr />");
+                    $(tr).append($("<td />").append($("<h4 />").text(users[i].name)));
+                    $(tr).append($("<td />").html('<small>' + users[i].phone_no + '</small>'));
+                    $(tr).append($("<td />").attr({width: '5%', rowspan: '2'}).append(
+                    		$("<button />").attr({class: 'btn btn-default btn-lg acceptBtn'}).append(
+                    				$("<span />").addClass('glyphicon glyphicon-ok')
+                    			)
+                    	));
+                   	$(table).append(tr);
+                   	$(table).append($('<tr />').append($('<td />').html('<small>' +users[i].addr + ' <strong>('+ (Math.round(Math.random() * 100) / 100) +' mi)</strong> </small>')));
+                   	$(li).append(table);
+
+                   	$(".list-group").append(li);
                 }
             },
             error: function(data) {
@@ -33,7 +42,7 @@
         var mongoUrl = "http://10.143.179.16:3000/";
 
         // After rider clicks accept button
-        $("#acceptBtn").click(function(event) {
+        $("body").on('click', '.acceptBtn', function(event) {
 
             $.ajax({
                 type: "GET",
@@ -53,30 +62,56 @@
 
     });
     </script>
-
+<style type="text/css">
+	.list-group .btn {
+		border: 0;
+	}
+	.list-group-item {
+		cursor: pointer;
+	}
+</style>
 </head>
 
 <body>
-    <div class="panel-group" id="requester">
-        <div class="panel panel-default content">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a class="requester-toggle" data-toggle="collapse" data-parent="#requester" href="#collapseThree">
-          Collapsible Group Item #2 (template panel)
-        </a>
-                </h4>
-            </div>
-            <div id="collapseThree" class="panel-collapse collapse">
-                <div class="panel-body">
+    <div class='container'>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Spirit Of Humanity</a>
                 </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a>
+                        </li>
+                        <li><a href="#">History</a>
+                        </li>
+                        <li><a href="#">Account</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
             </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+        <div class="page-header">
+            <h1 class="text-center">Pick someone...</h1>
+        </div>
+
+        <div class="panel panel-default">
+            <ul class="list-group">
+            </ul>
         </div>
     </div>
-
-    <button id="acceptBtn" class="btn btn-default btn-lg">Accept</button>
-
-    <!-- </div>
-<div id='output' style='background: red; height: 200px'></div> -->
 </body>
 
 </html>
