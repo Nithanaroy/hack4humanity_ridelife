@@ -8,13 +8,17 @@
 
 <script type="text/javascript">
 
-	var socket = io("http://192.168.204.1:3000/");
+$(function() {
 
-	$(function() {
-		$("#socket_test").click(function() {
-			socket.emit('request_ride', 'Aneesha');
+var socket = io("http://192.168.204.1:3000/");
+
+	
+		socket.on('assigned_driver', function(driver){
+			console.log(driver);
 		});
-	});
+		
+});
+	
 
 	function goBack()
 	{
@@ -26,7 +30,6 @@
 <center>
   <img class="media-object" src = "requestprocess.jpg" height = 200 width = 200 />
   
-  <button id='socket_test'>Emit Socket Msg</button
 
 <a href="home.html><button type="button" class="btn btn-default btn-lg" width="1000" onclick="goBack()">Back</button></a>
 

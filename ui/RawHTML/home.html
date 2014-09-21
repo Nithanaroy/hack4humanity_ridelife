@@ -23,8 +23,9 @@ var mongoUrl = "http://192.168.204.1:3000/";
 				success: function(data) {
 					location.href = "requestcar.html";				
 				},
+				// Pull from cookie
 				data: { 
-					user_id:1234, 
+					user_id:832546325472, 
 					location:"test"
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
@@ -42,7 +43,7 @@ var mongoUrl = "http://192.168.204.1:3000/";
   <a href="#" id='req_ride_btn'><img class="align-center img-responsive" src = "Logo1.png" height ="200" width ="200" /></a>
 
   <a href='Accept.html'>
-	<button type="button"  class="btn btn-default btn-lg">Accept</button>
+	<button type="button"  class="btn btn-default btn-lg">Give a Ride!</button>
   </a>
 </center>
   </body>
