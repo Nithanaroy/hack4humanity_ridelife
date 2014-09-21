@@ -1,9 +1,11 @@
-var http = require('http'),
-	express = require('express'),
+var express = require('express'),
 	user = require('./routes/users'),
 	session = require('./routes/sessions');
 
 var app = express();
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
+
 app.set('port', process.env.PORT || 3000);
 
 var allowCrossDomain = function(req, res, next) {
@@ -43,6 +45,7 @@ app.get('/users/helpme', user.helpNeeded);
 app.get('/users/:id', user.findUserById);
 
 
-http.createServer(app).listen(app.get('port'), function() {
+
+http.listen(app.get('port'), function() {
 	console.log('Hack4Humanity just started its ride! ' + app.get('port'));
 });
