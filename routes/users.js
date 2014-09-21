@@ -36,14 +36,29 @@ exports.create = function(req, res) {
 }
 
 /**
+ * User presses help needed button
+ * @param  {[type]} req [description]
+ * @param  {[type]} res [description]
+ * @return {[type]}     [description]
+ */
+exports.helpNeeded = function(req, res) {
+	var help_needed_at = req.query.location;
+	var requested_user_id = req.query.user_id;
+
+	// Broadcast this message to all other clients
+
+	res.send(200);
+}
+
+/**
  * Fetches the drivers nearby based on the given location
  * @param  {object} req
  * @param  {object} res
  * @return {json object list of users}
  */
 exports.getNearByUsers = function(req, res) {
-	var help_needed_at = req.location;
-	var requested_user = req.user;
+	var help_needed_at = req.query.location;
+	var requested_user_id = req.query.user_id;
 
 	// TODO: For now returning all users without using location
 	User.find({}, function(error, users) {

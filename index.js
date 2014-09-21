@@ -39,7 +39,7 @@ app.post('/users/save', user.create);
 app.post('/users/login', user.login);
 
 app.get('/users', user.getAll);
-app.get('/users/nearby', user.getNearByUsers);
+app.get('/users/helpme', user.helpNeeded);
 app.get('/users/:id', user.findUserById);
 
 
