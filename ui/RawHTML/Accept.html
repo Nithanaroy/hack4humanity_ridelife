@@ -29,14 +29,14 @@ $(function() {
 		complete: function() {}
 	});
 
-	var mongoUrl = "http://192.168.204.1:3000/";
+	var herokuUrl = "http://192.168.204.1:3000/";
 
 	// After rider clicks accept button
 	$("#acceptBtn").click(function(event) {
 
 		$.ajax({
 			type: "GET",
-			url: mongoUrl + "users/givingride",
+			url: herokuUrl + "users/givingride",
 			success: function(data) {
 				location.href = "list.html";
 			},

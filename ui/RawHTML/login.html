@@ -7,7 +7,7 @@
     <script type="text/javascript" src='bootstrap.min.js'></script>
     <script src="jquery.cookie.js"></script>
     <script type="text/javascript">
-    var mongoUrl = "http://whispering-cove-6076.herokuapp.com/";
+    var herokuUrl = "http://whispering-cove-6076.herokuapp.com/";
 
     function setCookie(id) {
         var d = new Date();
@@ -36,7 +36,7 @@
             // Push to client
             $.ajax({
                 type: "POST",
-                url: mongoUrl + "users/login",
+                url: herokuUrl + "users/login",
                 success: function(user) {
                     $.cookie('asu_id', user._id, {
                         expires: 10, //expires in 10 days

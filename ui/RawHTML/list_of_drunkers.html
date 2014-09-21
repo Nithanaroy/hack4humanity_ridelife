@@ -39,14 +39,14 @@
             complete: function() {}
         });
 
-        var mongoUrl = "http://10.143.179.16:3000/";
+        var herokuUrl = "http://10.142.79.58:3000/";
 
         // After rider clicks accept button
         $("body").on('click', '.acceptBtn', function(event) {
 
             $.ajax({
                 type: "GET",
-                url: mongoUrl + "users/givingride",
+                url: herokuUrl + "users/givingride",
                 success: function(data) {
                     location.href = "map.html";
                 },

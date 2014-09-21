@@ -8,7 +8,7 @@
     <script>
     $(function() {
 
-        var socket = io("http://10.143.179.16:3000/");
+        var socket = io("http://10.142.79.58:3000/");
 
         socket.on('help_sought', function(message) {
             console.log(message);
@@ -33,12 +33,12 @@
 
 
         // Asking for a ride
-        // var mongoUrl = "http://whispering-cove-6076.herokuapp.com/";
-        var mongoUrl = "http://10.143.179.16:3000/";
+        // var herokuUrl = "http://whispering-cove-6076.herokuapp.com/";
+        var herokuUrl = "http://10.142.79.58:3000/";
         $("#req_ride_btn").click(function(event) {
             $.ajax({
                 type: "GET",
-                url: mongoUrl + "users/helpme",
+                url: herokuUrl + "users/helpme",
                 success: function(data) {
                     location.href = "waiting_for_rider.html";
                 },

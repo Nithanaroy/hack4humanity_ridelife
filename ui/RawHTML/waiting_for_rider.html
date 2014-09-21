@@ -11,8 +11,8 @@
     $(function() {
 
         var assigned_driver = null;
-        var mongoUrl = 'http://10.143.179.16:3000/';
-        var socket = io(mongoUrl);
+        var herokuUrl = 'http://10.142.79.58:3000/';
+        var socket = io(herokuUrl);
 
         // Driver is assigned, show a screen displayng the driver details
         socket.on('assigned_driver', function(driver) {
@@ -32,11 +32,11 @@
 
                 // make an ajax call completing the ride
                 $.ajax({
-                    url: mongoUrl + 'users/completeride',
+                    url: herokuUrl + 'users/completeride',
                     type: "GET",
                     data: {
-                        drunker_id: 76483746384,
-                        driver_id: 832546325472
+                        drunker_id: 76483746384,  // TODO: Should be from cookies
+                        driver_id: 832546325472  // TODO: Should be from cookies
                     },
                     crossDomain: true,
                     success: function(data) {

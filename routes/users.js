@@ -144,9 +144,11 @@ exports.login = function(req, res) {
  */
 exports.completeRide = function(req, res) {
 	drunker_id = req.query.drunker_id;
-	rider_id = req.query.rider_id;
+	rider_id = req.query.driver_id;
 
-	User.Inc({asu_id: drunker_id}, { $inc: { tokens: -2} }, function(err, data) {
+	console.log(drunker_id, rider_id);
+
+	User.Inc({asu_id: drunker_id}, { $inc: { tokens: -1} }, function(err, data) {
 		User.Inc({asu_id: rider_id}, { $inc: { tokens: 1} }, function(err, data) {
 			res.send(200);
 		});
