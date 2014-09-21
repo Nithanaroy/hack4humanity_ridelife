@@ -13,14 +13,14 @@
             url: "http://whispering-cove-6076.herokuapp.com/users",
             crossDomain: true,
             success: function(users) {
-                var cusers = users.length;
+                var cusers = users.length - 1; // TODO: Hardcoding Betty, the last user in table as drunken
 
                 for (var i = 0; i < cusers; i++) {
                     var li = $("<li />").addClass('list-group-item acceptBtn');
                     var table = $("<table />").attr({width: '100%'});
                     var tr = $("<tr />");
                     $(tr).append($("<td />").append($("<h4 />").text(users[i].name)));
-                    $(tr).append($("<td />").html('<small>' + users[i].phone_no + '</small>'));
+                    $(tr).append($("<td />").html('<small><a href="tel:' + users[i].phone_no + '">' + users[i].phone_no + '</a></small>'));
                     $(tr).append($("<td />").attr({width: '5%', rowspan: '2'}).append(
                     		$("<button />").attr({class: 'btn btn-default btn-lg acceptBtn'}).append(
                     				$("<span />").addClass('glyphicon glyphicon-ok')

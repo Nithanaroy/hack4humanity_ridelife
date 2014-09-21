@@ -10,9 +10,26 @@
 
         var socket = io("http://10.143.179.16:3000/");
 
-        socket.on('hi', function(message) {
+        socket.on('help_sought', function(message) {
             console.log(message);
+            var current_count = parseInt($("#badge").text());
+            $("#badge").text(current_count + 1);
         });
+
+        var qs = (function(a) {
+            if (a == "") return {};
+            var b = {};
+            for (var i = 0; i < a.length; ++i) {
+                var p = a[i].split('=', 2);
+                if (p.length == 1)
+                    b[p[0]] = "";
+                else
+                    b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+            }
+            return b;
+        })(window.location.search.substr(1).split('&'));
+
+        $('#token_count').text(qs['tokens']);
 
 
         // Asking for a ride
@@ -74,7 +91,7 @@
 
         <div>
             <a href="#" id='req_ride_btn'>
-                <img class="center-block img-responsive" src="Logo1.png" height="200" style='box-shadow: 0 0px 10px #AAA;' />
+                <img class="center-block img-responsive" src="savemebutton.png" width="200px" />
             </a>
 
             <br />
@@ -83,7 +100,7 @@
                 <a href='list_of_drunkers.html'>
                     <button type="button" class="btn btn-success btn-lg">Give a Ride!</button>
                 </a>
-                <span class="badge" style="
+                <span class="badge" id='badge' style="
 							    position: relative;
 								top: -20px;
 								left: -18px;
@@ -91,9 +108,30 @@
 							    color: #FFF;
 							    box-shadow: 0 0 4px #AAA;
 							    border: solid 1px #999;
-							    border-radius: 14px;
-							    padding: 7px;
-							">42</span>
+							    border-radius: 16px;
+							    padding: 9px;
+							">3</span>
+            </div>
+
+            <div>
+            </div>
+        </div>
+
+        <div style='overflow: hidden;'>
+            <div style='position: absolute;
+						bottom: 0;
+						right: 0;
+						background: maroon;
+						padding: 46px;
+						border-radius: 120px 0 0 0;
+						width: 120px;
+						height: 120px;'>
+                <h1 style='position: relative;
+							bottom: 12px;
+							right: 7px;
+							color: gold;
+							font-weight: bold;
+							text-shadow: 0 1px 3px #000;' id='token_count'></h1>
             </div>
         </div>
     </div>

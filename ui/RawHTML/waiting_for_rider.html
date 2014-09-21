@@ -20,7 +20,7 @@
             console.log(assigned_driver);
             $("#driver_name").text(assigned_driver.name);
             $("#driver_license").text(assigned_driver.license);
-            $("#driver_phone").text(assigned_driver.phone_no);
+            $("#driver_phone").html("<a href='tel:" + assigned_driver.phone_no + "'>"+assigned_driver.phone_no+"</a>");
             $("#stage2").removeClass('hidden');
             $("#stage1").addClass('hidden');
         });
@@ -35,8 +35,8 @@
                     url: mongoUrl + 'users/completeride',
                     type: "GET",
                     data: {
-                        drunker_id: 832546325472,
-                        driver_id: assigned_driver.asu_id
+                        drunker_id: 76483746384,
+                        driver_id: 832546325472
                     },
                     crossDomain: true,
                     success: function(data) {

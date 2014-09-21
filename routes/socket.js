@@ -11,7 +11,5 @@ module.exports = function(socket) {
 
 	socket.on('request_ride', function(msg) {
 		console.log('message: ' + msg);
-
-		// socket.broadcast.emit('hi', "Hello There");
 	});
 }

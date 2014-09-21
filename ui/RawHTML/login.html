@@ -37,8 +37,8 @@
             $.ajax({
                 type: "POST",
                 url: mongoUrl + "users/login",
-                success: function(data) {
-                    $.cookie('asu_id', data._id, {
+                success: function(user) {
+                    $.cookie('asu_id', user._id, {
                         expires: 10, //expires in 10 days
 
                         path: '/', //The value of the path attribute of the cookie 
@@ -51,8 +51,8 @@
                         //will be set and the cookie transmission will
                         //require a secure protocol (defaults to false).
                     });
-                    <!-- set next page -->
-                    window.location = "give_take_ride.html";
+                    // set next page
+                    window.location = "give_take_ride.html?tokens=" + user.tokens;
                 },
                 data: {
                     id: document.getElementById("ASUID").value,

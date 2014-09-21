@@ -49,7 +49,7 @@ exports.helpNeeded = function(req, res) {
 	// Broadcast this message to all other clients
 	var io = globals.io;
 	// console.log('testing in users', socket);
-	io.emit('hi', "A guy requested for help. Update the balloon");
+	io.emit('help_sought', "A guy requested for help. Update the balloon");
 
 	res.send(200);
 }
