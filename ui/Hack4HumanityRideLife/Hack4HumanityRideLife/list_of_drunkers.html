@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <script src="jquery-2.1.1.min.js"></script>
+    <script type='text/javascript'>
+
+    $(function() {
+
+        // Loading all ppl in need
+        $.ajax({
+            type: "GET",
+            url: "http://whispering-cove-6076.herokuapp.com/users",
+            crossDomain: true,
+            success: function(data) {
+                var length = data.length;
+                var $content = $(".content");
+                var hash = 2;
+                for (var i = 0; i < length; i++) {
+                    var $newPanel = $content.clone();
+                    $newPanel.find(".collapse").removeClass("in");
+                    $newPanel.find(".requester-toggle").attr("href", "#" + (++hash))
+                        .text("Dynamic panel #" + hash);
+                    $newPanel.find(".panel-collapse").attr("id", hash).addClass("collapse").removeClass("in");
+                    $("#requester").append($newPanel.fadeIn());
+                }
+            },
+            error: function(data) {
+                console.log(data);
+            },
+            complete: function() {}
+        });
+
+        var mongoUrl = "http://10.143.179.16:3000/";
+
+        // After rider clicks accept button
+        $("#acceptBtn").click(function(event) {
+
+            $.ajax({
+                type: "GET",
+                url: mongoUrl + "users/givingride",
+                success: function(data) {
+                    location.href = "map.html";
+                },
+                data: {
+                    user_id: 832546325472
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, errorThrown);
+                },
+                complete: function() {}
+            });
+        });
+
+    });
+    </script>
+
+</head>
+
+<body>
+    <div class="panel-group" id="requester">
+        <div class="panel panel-default content">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="requester-toggle" data-toggle="collapse" data-parent="#requester" href="#collapseThree">
+          Collapsible Group Item #2 (template panel)
+        </a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a id="acceptBtn" class="btn btn-default btn-lg" href="map.html">Accept</a>
+
+    <!-- </div>
+<div id='output' style='background: red; height: 200px'></div> -->
+</body>
+
+</html>

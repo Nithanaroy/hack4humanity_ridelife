@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <script src="jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src='bootstrap.min.js'></script>
+    <script src="jquery.cookie.js"></script>
+    <script type="text/javascript">
+    var mongoUrl = "http://whispering-cove-6076.herokuapp.com/";
+
+    function setCookie(id) {
+        var d = new Date();
+        d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = "ASU_ID=" + id + "; " + expires;
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1);
+            if (c.indexOf(name) != -1) {
+                return c;
+            }
+        }
+        return "";
+    }
+
+    $(function() {
+        $("#submitBtn").click(function(event) {
+            //		event.preventDefault();
+
+            // Push to client
+            $.ajax({
+                type: "POST",
+                url: mongoUrl + "users/login",
+                success: function(data) {
+                    $.cookie('asu_id', data._id, {
+                        expires: 10, //expires in 10 days
+
+                        path: '/', //The value of the path attribute of the cookie 
+                        //(default: path of page that created the cookie).
+
+                        domain: 'hack4humanity.com', //The value of the domain attribute of the cookie
+                        //(default: domain of page that created the cookie).
+
+                        secure: true //If set to true the secure attribute of the cookie
+                        //will be set and the cookie transmission will
+                        //require a secure protocol (defaults to false).
+                    });
+                    window.location = "give_take_ride.html";
+                },
+                data: {
+                    id: document.getElementById("ASUID").value,
+                    password: document.getElementById("password").value
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, errorThrown);
+                },
+                complete: function() {}
+            });
+        });
+    });
+
+
+
+    function checkCookie() {
+        var user = getCookie("ASU_ID");
+        if (user != "") {
+//            <!--alert("Welcome " + user.value); -->
+ //           <!-- window.location="home.html"; -->
+        }
+    }
+    </script>
+</head>
+
+<body onload="checkCookie()">
+    <div class="container">
+
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Spirit Of Humanity</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a>
+                        </li>
+                        <li><a href="#">History</a>
+                        </li>
+                        <li><a href="#">Account</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+        <form role="form">
+            <div class="form-group">
+                <label for="exampleInputEmail1">ASU ID</label>
+                <input type="email" class="form-control" id="ASUID" placeholder="Enter ASU ID" value="832546325472" />
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox">Remember Me
+                </label>
+            </div>
+            <button id='submitBtn' class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
+        </form>
+    </div>
+</body>
+
+</html>
